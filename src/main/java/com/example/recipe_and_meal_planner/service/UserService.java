@@ -9,6 +9,8 @@ import java.util.Optional;
 public interface UserService {
 
     UserDto createUser(UserDto dto, String password);
+
     UserDto getUserById(Long id);
+
     List<UserDto> getAllUser();
 }

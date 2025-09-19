@@ -9,9 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -22,7 +20,6 @@ public class UserServiceImpl implements UserService {
     private final CustomMapper mapper;
     private final PasswordEncoder passwordEncoder;
 
-    // userRepo.findById(dto.getId()).orElseThrow(() -> new IdNotFoundException("No user id " + dto.getId()))
     @Override
     public UserDto createUser(UserDto dto, String password) {
         String encoded = passwordEncoder.encode(password);
@@ -35,11 +32,9 @@ public class UserServiceImpl implements UserService {
         return mapper.toUserDto(userRepo.findById(id).orElseThrow(() -> new IdNotFoundException("No User Id - " + id)));
     }
 
-
     @Override
     public List<UserDto> getAllUser() {
         return userRepo.findAll().stream().map(mapper::toUserDto).collect(Collectors.toList());
     }
-
 
 }
