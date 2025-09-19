@@ -22,7 +22,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public Optional<UserDto> getUserById(@PathVariable("id") long id) throws IdNotFoundException {
+    public UserDto getUserById(@PathVariable("id") long id) throws IdNotFoundException {
         return userService.getUserById(id);
     }
 

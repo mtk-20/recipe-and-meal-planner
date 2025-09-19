@@ -9,6 +9,6 @@ import java.util.Optional;
 public interface UserService {
 
     UserDto createUser(UserDto dto, String password);
-    Optional<UserDto> getUserById(Long id) throws IdNotFoundException;
+    UserDto getUserById(Long id) throws IdNotFoundException;
     List<UserDto> getAllUser();
 }

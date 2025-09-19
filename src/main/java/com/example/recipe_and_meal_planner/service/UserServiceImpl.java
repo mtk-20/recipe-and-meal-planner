@@ -31,11 +31,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<UserDto> getUserById(Long id) throws IdNotFoundException {
-        if (!userRepo.existsById(id)) {
-            throw new IdNotFoundException("No user id " + id);
-        }
-        return userRepo.findById(id).map(mapper::toUserDto);
+    public UserDto getUserById(Long id) throws IdNotFoundException {
+        return mapper.toUserDto(userRepo.findById(id).orElseThrow(() -> new IdNotFoundException("No user id " + id)));
     }
 
     @Override
