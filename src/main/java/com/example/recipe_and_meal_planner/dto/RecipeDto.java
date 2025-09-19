@@ -14,5 +14,5 @@ public class RecipeDto {
     private String description;
     private String category;
     private String imgUrl;
-    private long userId;
+    private Long userId;
 }
