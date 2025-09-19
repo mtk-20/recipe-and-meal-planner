@@ -4,12 +4,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.time.LocalDate;
 
-@Data@NoArgsConstructor@AllArgsConstructor
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class MealPlan {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long mealId;
     private MealType mealType;
     private LocalDate date;
