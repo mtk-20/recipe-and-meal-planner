@@ -9,13 +9,13 @@ import com.example.recipe_and_meal_planner.model.User;
 import org.springframework.stereotype.Component;
 
 @Component
-public class customMapper {
+public class CustomMapper {
 
-    public User toUserEntity(UserDto dto) {
+    public User toUserEntity(UserDto dto, String password) {
         User user = new User();
-        user.setId(dto.getId());
         user.setUserName(dto.getUserName());
         user.setEmail(dto.getEmail());
+        user.setPassword(password);
         return user;
     }
 
@@ -27,13 +27,13 @@ public class customMapper {
         );
     }
 
-    public Recipe toRecipeEntity(RecipeDto dto) {
+    public Recipe toRecipeEntity(RecipeDto dto, User user) {
         Recipe recipe = new Recipe();
-        recipe.setRecipeId(dto.getRecipeId());
         recipe.setRecipeName(dto.getRecipeName());
         recipe.setDescription(dto.getDescription());
         recipe.setCategory(dto.getCategory());
         recipe.setImgUrl(dto.getImgUrl());
+        recipe.setUser(user);
         return recipe;
     }
 
@@ -48,11 +48,12 @@ public class customMapper {
         );
     }
 
-    public MealPlan toMealPlanEntity(MealPlanDto dto) {
+    public MealPlan toMealPlanEntity(MealPlanDto dto, User user, Recipe recipe) {
         MealPlan mealPlan = new MealPlan();
-        mealPlan.setMealId(dto.getMealId());
         mealPlan.setMealType(MealPlan.MealType.valueOf(dto.getMealType().toUpperCase()));
         mealPlan.setDate(dto.getDate());
+        mealPlan.setUser(user);
+        mealPlan.setRecipe(recipe);
         return mealPlan;
     }
 
