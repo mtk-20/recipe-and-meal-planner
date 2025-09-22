@@ -21,4 +21,14 @@ public class GlobalExceptionHandler {
         body.put("message", e.getMessage());
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(UserNameNotFoundException.class)
+    public ResponseEntity<Object> handleUserNameNotFound(UserNameNotFoundException e) {
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("time-stamp", LocalDateTime.now());
+        body.put("status", HttpStatus.NOT_FOUND);
+        body.put("error", "Username Not Found");
+        body.put("message", e.getMessage());
+        return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+    }
 }
