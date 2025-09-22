@@ -1,6 +1,7 @@
 package com.example.recipe_and_meal_planner.service;
 
 import com.example.recipe_and_meal_planner.dto.UserDto;
+import com.example.recipe_and_meal_planner.dto.UserResponseDto;
 import com.example.recipe_and_meal_planner.exception.IdNotFoundException;
 import com.example.recipe_and_meal_planner.model.User;
 import com.example.recipe_and_meal_planner.repo.UserRepo;
@@ -28,13 +29,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto getUserById(Long id) {
-        return mapper.toUserDto(userRepo.findById(id).orElseThrow(() -> new IdNotFoundException("No User Id - " + id)));
+    public UserResponseDto getUserById(Long id) {
+        return mapper.toUserResponseDto(userRepo.findById(id).orElseThrow(() -> new IdNotFoundException("No User Id - " + id)));
     }
 
     @Override
-    public List<UserDto> getAllUser() {
-        return userRepo.findAll().stream().map(mapper::toUserDto).collect(Collectors.toList());
+    public List<UserResponseDto> getAllUser() {
+        return userRepo.findAll().stream().map(mapper::toUserResponseDto).collect(Collectors.toList());
     }
 
     @Override

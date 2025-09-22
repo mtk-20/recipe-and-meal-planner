@@ -27,14 +27,14 @@ public class MealPlanServiceImpl implements MealPlanService {
     @Override
     public MealPlanDto createMealPlan(MealPlanDto dto) {
         User user = userRepo.findById(dto.getUserId()).orElseThrow(() -> new IdNotFoundException("No User Id " + dto.getUserId()));
-        Recipe recipe = recipeRepo.findById(dto.getRecipeId()).orElseThrow(() -> new IdNotFoundException("No User Id " + dto.getRecipeId()));
+        Recipe recipe = recipeRepo.findById(dto.getRecipeId()).orElseThrow(() -> new IdNotFoundException("No Recipe Id " + dto.getRecipeId()));
         MealPlan mealPlan = mapper.toMealPlanEntity(dto, user, recipe);
         return mapper.toMealPlanDto(mealPlanRepo.save(mealPlan));
     }
 
     @Override
     public MealPlanDto getMealPlanById(Long mealId) {
-        return mapper.toMealPlanDto(mealPlanRepo.findById(mealId).orElseThrow(() -> new IdNotFoundException("No User Id " + mealId)));
+        return mapper.toMealPlanDto(mealPlanRepo.findById(mealId).orElseThrow(() -> new IdNotFoundException("No MealPlan Id " + mealId)));
     }
 
     @Override
@@ -44,7 +44,7 @@ public class MealPlanServiceImpl implements MealPlanService {
 
     @Override
     public MealPlanDto updateMealPlan(Long mealId, MealPlanDto dto) {
-        MealPlan mealPlan = mealPlanRepo.findById(mealId).orElseThrow(() -> new IdNotFoundException("No User Id " + mealId));
+        MealPlan mealPlan = mealPlanRepo.findById(mealId).orElseThrow(() -> new IdNotFoundException("No MealPlan Id " + mealId));
         mealPlan.setMealType(MealPlan.MealType.valueOf(dto.getMealType()));
         mealPlan.setDate(dto.getDate());
         return mapper.toMealPlanDto(mealPlanRepo.save(mealPlan));
@@ -53,7 +53,7 @@ public class MealPlanServiceImpl implements MealPlanService {
     @Override
     public void deleteMealPlan(Long mealId) {
         if (!mealPlanRepo.existsById(mealId)) {
-            throw new IdNotFoundException("No Meal Id " + mealId);
+            throw new IdNotFoundException("No MealPlan Id " + mealId);
         }
         mealPlanRepo.deleteById(mealId);
     }
