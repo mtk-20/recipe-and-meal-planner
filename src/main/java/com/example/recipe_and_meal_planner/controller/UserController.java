@@ -1,6 +1,7 @@
 package com.example.recipe_and_meal_planner.controller;
 
 import com.example.recipe_and_meal_planner.dto.UserDto;
+import com.example.recipe_and_meal_planner.dto.UserResponseDto;
 import com.example.recipe_and_meal_planner.exception.IdNotFoundException;
 import com.example.recipe_and_meal_planner.service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -22,12 +23,12 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public UserDto getUsersById(@PathVariable("id") long id) throws IdNotFoundException {
+    public UserResponseDto getUsersById(@PathVariable("id") long id) throws IdNotFoundException {
         return userService.getUserById(id);
     }
 
     @GetMapping
-    public List<UserDto> getAlUsers() {
+    public List<UserResponseDto> getAlUsers() {
         return userService.getAllUser();
     }
 

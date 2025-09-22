@@ -3,6 +3,7 @@ package com.example.recipe_and_meal_planner.util;
 import com.example.recipe_and_meal_planner.dto.MealPlanDto;
 import com.example.recipe_and_meal_planner.dto.RecipeDto;
 import com.example.recipe_and_meal_planner.dto.UserDto;
+import com.example.recipe_and_meal_planner.dto.UserResponseDto;
 import com.example.recipe_and_meal_planner.model.MealPlan;
 import com.example.recipe_and_meal_planner.model.Recipe;
 import com.example.recipe_and_meal_planner.model.User;
@@ -21,6 +22,15 @@ public class CustomMapper {
 
     public UserDto toUserDto(User user) {
         return new UserDto(
+                user.getId(),
+                user.getUserName(),
+                user.getPassword(),
+                user.getEmail()
+        );
+    }
+
+    public UserResponseDto toUserResponseDto(User user) {
+        return new UserResponseDto(
                 user.getId(),
                 user.getUserName(),
                 user.getEmail()
