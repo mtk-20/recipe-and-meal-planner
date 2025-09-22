@@ -15,18 +15,23 @@ public class MealPlan {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long mealId;
+    private Long mealId;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private MealType mealType;
+    @Column(nullable = false)
     private LocalDate date;
 
-    private enum MealType {
-        breakfast, lunch, dinner
+    public enum MealType {
+        BREAKFAST, LUNCH, DINNER
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "recipe_id")
     private Recipe recipe;
 
 }
