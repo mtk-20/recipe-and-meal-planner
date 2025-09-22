@@ -10,7 +10,6 @@ import com.example.recipe_and_meal_planner.util.CustomMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,7 +39,7 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    public RecipeDto updateRecipeById(Long recipeId, RecipeDto dto) {
+    public RecipeDto updateRecipe(Long recipeId, RecipeDto dto) {
         Recipe recipe = recipeRepo.findById(recipeId).orElseThrow(() -> new IdNotFoundException("No Recipe Id" + recipeId));
         recipe.setRecipeName(dto.getRecipeName());
         recipe.setDescription(dto.getDescription());

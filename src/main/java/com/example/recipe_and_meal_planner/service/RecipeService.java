@@ -11,7 +11,7 @@ public interface RecipeService {
 
     List<RecipeDto> getAllRecipe();
 
-    RecipeDto updateRecipeById(Long recipeId, RecipeDto dto);
+    RecipeDto updateRecipe(Long recipeId, RecipeDto dto);
 
     void deleteRecipe(Long recipeId);
 }

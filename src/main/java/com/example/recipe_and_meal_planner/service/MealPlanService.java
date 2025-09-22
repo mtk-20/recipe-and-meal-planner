@@ -12,7 +12,7 @@ public interface MealPlanService {
 
     List<MealPlanDto> getAllMealPlan();
 
-    MealPlanDto updateMealPlanById(MealPlanDto dto, Long mealId);
+    MealPlanDto updateMealPlan(Long mealId, MealPlanDto dto);
 
     void deleteMealPlan(Long mealId);
 }
