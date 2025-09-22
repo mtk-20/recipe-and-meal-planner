@@ -37,4 +37,21 @@ public class UserServiceImpl implements UserService {
         return userRepo.findAll().stream().map(mapper::toUserDto).collect(Collectors.toList());
     }
 
+    @Override
+    public UserDto updateUser(Long id, UserDto dto) {
+        User user = userRepo.findById(id).orElseThrow(() -> new IdNotFoundException("No User Id - " + id));
+        user.setUserName(dto.getUserName());
+        user.setEmail(dto.getEmail());
+        return mapper.toUserDto(userRepo.save(user));
+    }
+
+    @Override
+    public void deleteUser(Long id) {
+        if (!userRepo.existsById(id)) {
+            throw new IdNotFoundException("No User Id - " + id);
+        }
+        userRepo.deleteById(id);
+    }
+
+
 }

@@ -17,18 +17,28 @@ public class UserController {
     private final UserServiceImpl userService;
 
     @PostMapping("/create")
-    public UserDto createUser(@RequestBody UserDto dto, @RequestParam String password) {
+    public UserDto createUsers(@RequestBody UserDto dto, @RequestParam String password) {
         return userService.createUser(dto, password);
     }
 
     @GetMapping("/{id}")
-    public UserDto getUserById(@PathVariable("id") long id) throws IdNotFoundException {
+    public UserDto getUsersById(@PathVariable("id") long id) throws IdNotFoundException {
         return userService.getUserById(id);
     }
 
     @GetMapping
     public List<UserDto> getAlUsers() {
         return userService.getAllUser();
+    }
+
+    @PutMapping("/update/{id}")
+    public UserDto updateUsers(@PathVariable("id") Long id,@RequestBody UserDto dto) {
+        return userService.updateUser(id, dto);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteUsers(@PathVariable("id") Long id) {
+        userService.deleteUser(id);
     }
 
 }
