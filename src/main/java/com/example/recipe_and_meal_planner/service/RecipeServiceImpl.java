@@ -30,7 +30,7 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public RecipeDto getRecipeById(Long recipeId) {
-        return mapper.toRecipeDto(recipeRepo.findById(recipeId).orElseThrow(() -> new IdNotFoundException("No Recipe Id" + recipeId)));
+        return mapper.toRecipeDto(recipeRepo.findById(recipeId).orElseThrow(() -> new IdNotFoundException("No Recipe Id " + recipeId)));
     }
 
     @Override
@@ -40,7 +40,7 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public RecipeDto updateRecipe(Long recipeId, RecipeDto dto) {
-        Recipe recipe = recipeRepo.findById(recipeId).orElseThrow(() -> new IdNotFoundException("No Recipe Id" + recipeId));
+        Recipe recipe = recipeRepo.findById(recipeId).orElseThrow(() -> new IdNotFoundException("No Recipe Id " + recipeId));
         recipe.setRecipeName(dto.getRecipeName());
         recipe.setDescription(dto.getDescription());
         recipe.setCategory(dto.getCategory());
